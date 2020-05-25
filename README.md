@@ -10,7 +10,19 @@ You can also run the project on your mobile device. `ng serve --o --host {your i
 
 ## rules
 
-- [x]
+- [x] HTML5 && SCSS
+- [x] Responsive
+- [x] Use Angular 9
+- [x] Use animation
+- [x] Use Angular Material
+
+Bonus : 
+
+- [x] Dark / Light Theme
+- [ ] Unit Test
+- [ ] SVG's animation
+- [ ] i18n/a11y friendly
+- [ ] Compatibility ie11.
 
 
 ## Build
