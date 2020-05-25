@@ -1,0 +1,201 @@
+@import "partials/mixins";
+@import "partials/variables";
+
+@import "~@angular/material/theming";
+
+.player-component {
+  height: 100%;
+  width: 100%;
+}
+
+.table-container {
+  height: calc(100vh - 264px);
+}
+
+table {
+  &.slide-in-top {
+    animation: slide-in-top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+
+  td {
+    &.cell__highlighted {
+      &.cell__corner-left-top {
+        border-radius: 2rem 0rem 0 0;
+      }
+
+      &.cell__corner-left-bottom {
+        border-radius: 0 0 0 2rem;
+      }
+
+      &.cell__corner-right-top {
+        border-radius: 0 2rem 0 0;
+      }
+
+      &.cell__corner-right-bottom {
+        border-radius: 0 0 2rem 0;
+      }
+
+      border-radius: 0;
+      background-color: rgba(0, 0, 0, 0.144);
+    }
+  }
+}
+
+.winner {
+  .winner__name {
+    padding: 0.6rem;
+    border-radius: 20px;
+    &.winner__red {
+      background-color: $red;
+    }
+    &.winner__yellow {
+      background-color: $red;
+    }
+  }
+}
+
+@mixin grid-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $background: map-get($theme, background);
+  $background-color: mat-color($background, card);
+
+  .count {
+    font-size: 5rem;
+    color: white;
+    text-shadow: -2px 0 mat-color($primary), 0 2px mat-color($primary),
+      2px 0 mat-color($primary), 0 -2px mat-color($primary);
+  }
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: mat-color($primary);
+    border-radius: 2rem;
+    padding: 1rem;
+    overflow: hidden;
+
+    &.dark-theme {
+      td {
+        background-color: mat-color($primary);
+
+        &.cell__highlighted {
+          &.cell__corner-left-top {
+            border-radius: 2rem 0rem 0 0;
+          }
+
+          &.cell__corner-left-bottom {
+            border-radius: 0 0 0 2rem;
+          }
+
+          &.cell__corner-right-top {
+            border-radius: 0 2rem 0 0;
+          }
+
+          &.cell__corner-right-bottom {
+            border-radius: 0 0 2rem 0;
+          }
+
+          border-radius: 0;
+          background-color: rgba(0, 0, 0, 0.144);
+        }
+      }
+    }
+
+    .cell__hole {
+      position: relative;
+      background: white;
+      border-radius: 2cm;
+      @include widthAndheight(2cm, 2cm);
+
+      &.cell__available {
+        background-color: rgba(0, 0, 0, 0.356);
+        transition: 0.3s;
+      }
+
+      &.is-mobile {
+        @include widthAndheight(4rem, 4rem);
+      }
+    }
+
+    .token {
+      @include widthAndheight(2cm, 2cm);
+      border-radius: 2cm;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &.no-animate {
+        -webkit-transition: none !important;
+        transition: none !important;
+      }
+
+      &.is-mobile {
+        @include widthAndheight(4rem, 4rem);
+      }
+
+      &.token__red {
+        background-color: $red;
+      }
+
+      &.token__yellow {
+        background-color: $yellow;
+      }
+    }
+
+    td {
+      margin: 15px;
+      padding: 0px;
+      border-radius: 2cm;
+      padding: 1rem;
+      background-color: mat-color($primary);
+      cursor: pointer;
+    }
+  }
+}
+
+// mobile grid
+
+.table-container {
+  &.is-mobile {
+    table {
+      td {
+        padding: 0.3rem;
+      }
+    }
+  }
+}
+
+/**
+ * ----------------------------------------
+ * animation slide-in-top
+ * ----------------------------------------
+ */
+@-webkit-keyframes slide-in-top {
+  0% {
+    -webkit-transform: translateY(-1000px);
+    transform: translateY(-1000px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-top {
+  0% {
+    -webkit-transform: translateY(-1000px);
+    transform: translateY(-1000px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

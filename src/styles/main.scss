@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "./theme/theme.scss";
+@import "./animations/bounce.scss";
+@import "./layouts/grid.scss";
+
+html,
+body {
+  height: 100%;
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 1.6rem;
+}
+
+*:active,
+*:focus {
+  outline: none;
+}
+
+p {
+  margin: 0;
+}
+
+.btn {
+  color: white;
+  max-width: 300px;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
+.p-2 {
+  padding: 2rem;
+}
+
+.bold {
+  font-weight: bold;
+}

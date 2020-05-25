@@ -1,0 +1,15 @@
+@import "partials/variables";
+
+mat-card {
+  &.is-mobile {
+    max-width: 100px;
+  }
+}
+
+.red-bg {
+  background-color: $red;
+}
+
+.yellow-bg {
+  background-color: $yellow;
+}

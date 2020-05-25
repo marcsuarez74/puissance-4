@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+    <button
+      *ngIf="route.route !== '/player'"
+      (click)="returnHomePage()"
+      color="accent"
+      mat-flat-button
+    >
+      <mat-icon>home</mat-icon>
+    </button>
+
+    <h1>{{ CONSTANTS.TITLE_APP }}</h1>
+
+    <a href="https://github.com/marco-studio73/puissance-4" target="_blank">
+      <i class="fab fa-github"></i>
+    </a>
+
+    <mat-slide-toggle
+      [checked]="isDarkTheme | async"
+      (change)="toggleDarkTheme($event.checked)"
+    >
+      <p>Dark</p>
+    </mat-slide-toggle>
+  </mat-toolbar-row>
+</mat-toolbar>

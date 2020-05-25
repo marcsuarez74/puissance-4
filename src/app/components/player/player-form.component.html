@@ -1,0 +1,31 @@
+<mat-card class="form-player-card">
+  <mat-card-content>
+    <form fxLayout="column" fxLayoutAlign="center center" [formGroup]="playerForm" class="form-container"
+      [ngClass]="{ 'dark-theme': isDarkTheme }">
+      <mat-form-field class="player-form-field" appearance="outline">
+        <mat-label>{{CONSTANTS.PLAYER_FORM.PLAYER.PLAYER_1}}</mat-label>
+        <input #player1 matInput class="user-input" type="text" formControlName="player1"
+          placeholder="{{CONSTANTS.PLAYER_FORM.PLACEHOLDER.PSEUDO}}" />
+        <mat-error *ngIf="playerForm.controls['player1'].invalid &&
+            (playerForm.controls['player1'].dirty ||
+            playerForm.controls['player1'].touched)">
+          {{CONSTANTS.PLAYER_FORM.ERROR.PLAYER_EMPTY}}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="player-form-field" appearance="outline">
+        <mat-label>{{CONSTANTS.PLAYER_FORM.PLAYER.PLAYER_2}}</mat-label>
+        <input #player2 matInput class="user-input" type="text" formControlName="player2"
+          placeholder="{{CONSTANTS.PLAYER_FORM.PLACEHOLDER.PSEUDO}}" />
+        <mat-error *ngIf="playerForm.controls['player2'].invalid &&
+            (playerForm.controls['player2'].dirty ||
+            playerForm.controls['player2'].touched)">
+          {{CONSTANTS.PLAYER_FORM.ERROR.PLAYER_EMPTY}}
+        </mat-error>
+      </mat-form-field>
+      <button [disabled]="playerForm.pristine || playerForm.invalid" type="submit" mat-flat-button color="primary"
+        class="btn btn-submit" (click)="runGame(player1.value, player2.value)">
+        {{CONSTANTS.BUTTON.LABELS.PLAY}}
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

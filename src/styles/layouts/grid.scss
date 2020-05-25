@@ -1,0 +1,13 @@
+grid {
+    width: 100%;
+    padding: 0 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.is-mobile {
+    grid {
+        padding: 0;
+    }
+}
