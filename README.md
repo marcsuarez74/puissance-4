@@ -10,7 +10,7 @@ You can also run the project on your mobile device. `ng serve --o --host {your i
 
 ## rules
 
-[X]
+- [x]
 
 
 ## Build
