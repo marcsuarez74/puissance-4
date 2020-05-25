@@ -8,7 +8,7 @@ Run `ng serve` or `npm run start` for a dev server. Navigate to `http://localhos
 
 You can also run the project on your mobile device. `ng serve --o --host {your ip adress}`
 
-## rules
+## Condition to respect
 
 - [x] HTML5 & SCSS
 - [x] Responsive
