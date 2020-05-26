@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "./theme/theme.scss";
+@import "./animations/bounce.scss";
 @import "./layouts/grid.scss";
-@import "./animations/slide-in-top";
 
 html,
 body {

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { GRID_CONFIG } from 'src/app/share/enum/grid.enum';
 import { Observable, Subscription, timer } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { ThemeService } from 'src/app/share/service/theme.service';
 import { IPlayer } from 'src/app/share/models/player';
 import { Store } from '@ngxs/store';
-import { transition, trigger } from '@angular/animations';
+import { transition, trigger, useAnimation } from '@angular/animations';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdatePlayer } from 'src/app/utils/store/action/player.action';
 import { FirstPlayerComponent } from '../dialog/first-player/first-player.component';
@@ -17,7 +17,6 @@ import {
   useBounceInUpAnimation,
 } from 'src/app/share/animations/bounce.animation';
 import { PlayerService } from 'src/app/share/service/player.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'grid',
@@ -54,7 +53,7 @@ export class GridComponent implements OnInit {
   public highlightedCol: number;
 
   public turn: number;
-  public moves = 0;
+  private moves = 0;
   public winner: IPlayer = null;
 
   public grid = new Array(this.rows);
@@ -64,8 +63,7 @@ export class GridComponent implements OnInit {
     private mobileService: MobileService,
     private playerService: PlayerService,
     private store: Store,
-    public dialog: MatDialog,
-    private snackBar: MatSnackBar
+    public dialog: MatDialog
   ) {
     this.isDarkTheme = this.themeService.isDarkTheme;
   }
@@ -186,9 +184,7 @@ export class GridComponent implements OnInit {
 
       // if no cell is empty the column is full
       if (row === undefined) {
-        return this.snackBar.open('colonne complete', 'Rejouer', {
-          duration: 3000,
-        });
+        return window.alert('Column is full!');
       } else {
         // switch the turn
         if (this.oddOrEven(this.turn) === 1) {
@@ -216,17 +212,11 @@ export class GridComponent implements OnInit {
       this.defineWinner(this.turn);
     } else {
       this.moves === this.rows * this.columns - 1
-        ? this.isMatchNull()
+        ? alert('match null')
         : this.moves++;
     }
 
     this.decrementTokenPlayer(player);
-  }
-
-  isMatchNull() {
-    return this.snackBar.open('Match null', '', {
-      duration: 3000,
-    });
   }
 
   defineWinner(turn: number) {

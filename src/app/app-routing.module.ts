@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PlayerFormComponent } from './components/player-form/player-form.component';
+import { PlayerFormComponent } from './components/player/player-form.component';
 import { GridComponent } from './components/grid/grid.component';
 import { PlayersGuard } from './share/guard/player.guard';
 

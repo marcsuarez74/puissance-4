@@ -1,6 +1,11 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-    <button *ngIf="route.route !== '/player'" (click)="returnHomePage()" color="accent" mat-flat-button>
+    <button
+      *ngIf="route.route !== '/player'"
+      (click)="returnHomePage()"
+      color="accent"
+      mat-flat-button
+    >
       <mat-icon>home</mat-icon>
     </button>
 
@@ -10,7 +15,10 @@
       <i class="fab fa-github"></i>
     </a>
 
-    <mat-slide-toggle [checked]="isDarkTheme | async" (change)="toggleDarkTheme($event.checked)">
+    <mat-slide-toggle
+      [checked]="isDarkTheme | async"
+      (change)="toggleDarkTheme($event.checked)"
+    >
       <p>Dark</p>
     </mat-slide-toggle>
   </mat-toolbar-row>
