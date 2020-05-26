@@ -1,62 +1,30 @@
 <player class="player-component" [players]="players"></player>
-<div
-  class="table-container"
-  fxLayout="column"
-  fxLayoutAlign="center center"
-  [class.is-mobile]="isMobile"
->
+<div class="table-container" fxLayout="column" fxLayoutAlign="center center" [class.is-mobile]="isMobile">
   <p class="count" *ngIf="count != 0">{{ count }}</p>
 
   <h1 class="winner" *ngIf="winner">
     le vainqueur de la partie est
-    <span
-      class="winner__name"
-      [class.winner__red]="winner.player === 1"
-      [class.winner__yellow]="winner.player === 2"
-      >{{ winner.name }}</span
-    >
+    <span class="winner__name" [class.winner__red]="winner.player === 1"
+      [class.winner__yellow]="winner.player === 2">{{ winner.name }}</span>
   </h1>
 
-  <table
-    class="mb-2"
-    [class.dark-theme]="isDarkTheme | async"
-    [class.slide-in-top]="count === 0"
-  >
+  <table class="mb-2" [class.dark-theme]="isDarkTheme | async" [class.slide-in-top]="count === 0">
     <tr *ngFor="let row of grid; let i = index">
-      <td
-        class="cell"
-        (click)="play(j)"
-        *ngFor="let col of row; let j = index"
-        (mouseover)="highlighted(j)"
-        [class.cell__highlighted]="highlightedCol == j"
-        [class.cell__corner-left-top]="i === 0 && j === 0"
-        [class.cell__corner-left-bottom]="i === 5 && j === 0"
-        [class.cell__corner-right-top]="i === 0 && j === 6"
-        [class.cell__corner-right-bottom]="i === 5 && j === 6"
-      >
+      <td class="cell" (click)="play(j)" *ngFor="let col of row; let j = index" (mouseover)="highlighted(j)"
+        [class.cell__highlighted]="highlightedCol == j" [class.cell__corner-left-top]="i === 0 && j === 0"
+        [class.cell__corner-left-bottom]="i === 5 && j === 0" [class.cell__corner-right-top]="i === 0 && j === 6"
+        [class.cell__corner-right-bottom]="i === 5 && j === 6">
         <div class="cell__hole" [class.is-mobile]="isMobile">
-          <div
-            @bounceInTop
-            *ngIf="col.value === 1 || col.value === 2"
-            [attr.data-value]="j"
-            [attr.data-row]="i"
-            class="token"
-            [class.is-mobile]="isMobile"
-            [class.token__red]="col.value === 1"
-            [class.token__yellow]="col.value === 2"
-          ></div>
+          <div @bounceInTop *ngIf="col.value === 1 || col.value === 2" [attr.data-value]="j" [attr.data-row]="i"
+            class="token" [class.is-mobile]="isMobile" [class.token__red]="col.value === 1"
+            [class.token__yellow]="col.value === 2"></div>
         </div>
       </td>
     </tr>
   </table>
 
-  <button
-    class="btn btn-restart"
-    mat-flat-button
-    *ngIf="winner !== null"
-    (click)="renderGrid()"
-    color="primary"
-  >
-    recommencer
+  <button class="btn btn-restart" mat-flat-button *ngIf="winner !== null || moves === 41" (click)="renderGrid()"
+    color="primary">
+    Rejouer
   </button>
 </div>

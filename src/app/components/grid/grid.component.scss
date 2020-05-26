@@ -42,14 +42,19 @@ table {
 }
 
 .winner {
+  font-size: 1.5rem;
+  text-align: center;
+
   .winner__name {
     padding: 0.6rem;
     border-radius: 20px;
+
     &.winner__red {
       background-color: $red;
     }
+
     &.winner__yellow {
-      background-color: $red;
+      background-color: $yellow;
     }
   }
 }
@@ -164,38 +169,5 @@ table {
         padding: 0.3rem;
       }
     }
-  }
-}
-
-/**
- * ----------------------------------------
- * animation slide-in-top
- * ----------------------------------------
- */
-@-webkit-keyframes slide-in-top {
-  0% {
-    -webkit-transform: translateY(-1000px);
-    transform: translateY(-1000px);
-    opacity: 0;
-  }
-
-  100% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slide-in-top {
-  0% {
-    -webkit-transform: translateY(-1000px);
-    transform: translateY(-1000px);
-    opacity: 0;
-  }
-
-  100% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    opacity: 1;
   }
 }

@@ -11,11 +11,11 @@ import {
 
 export const bounceAnimation = animation(
   [
-    style([{ opacity: 0 }]),
+    style([{ opacity: 1 }]),
     animate(
       '{{time}} ease-in-out',
       keyframes([
-        style([{ opacity: 0, transform: 'translateY(-500px)' }]),
+        style([{ opacity: 1, transform: 'translateY(-500px)' }]),
         style([{ opacity: 1, transform: 'translateY(0)' }]),
         style([{ transform: 'translateY(-65px)' }]),
         style([{ transform: 'translateY(0)' }]),

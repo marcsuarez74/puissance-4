@@ -37,6 +37,8 @@ export class ToolbarComponent implements OnInit {
     this.route = { route: this.location.path() };
     this.store.dispatch(new AddRoute(this.route));
 
+    console.log(this.route);
+
     this.$route = this.store.select((state) => state.Route.route);
     this.subs.push(
       this.$route.subscribe((route: IRoute) => {
