@@ -19,7 +19,7 @@ import { MobileState } from './utils/store/states/mobile.state';
 // Component
 import { AppComponent } from './app.component';
 import { GridComponent } from './components/grid/grid.component';
-import { PlayerFormComponent } from './components/player/player-form.component';
+import { PlayerFormComponent } from './components/player-form/player-form.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PlayerComponent } from './components/grid/player/player.component';
