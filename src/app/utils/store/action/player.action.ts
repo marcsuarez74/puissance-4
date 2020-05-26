@@ -9,3 +9,8 @@ export class UpdatePlayer {
   static readonly type = '[IPlayer] Update';
   constructor(public payload: IPlayer) {}
 }
+
+export class DeletePlayer {
+  static readonly type = '[IPlayer] delete';
+  constructor(public payload: []) {}
+}

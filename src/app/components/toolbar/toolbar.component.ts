@@ -8,6 +8,10 @@ import { Store } from '@ngxs/store';
 import { AddRoute, UpdateRoute } from 'src/app/utils/store/action/route.action';
 import { IRoute } from 'src/app/share/models/route';
 import { Location } from '@angular/common';
+import {
+  AddPlayer,
+  DeletePlayer,
+} from 'src/app/utils/store/action/player.action';
 
 @Component({
   selector: 'toolbar',
@@ -53,9 +57,14 @@ export class ToolbarComponent implements OnInit {
     this.store.dispatch(new AddRoute({ route: route }));
   }
 
+  deletePlayerFromStore() {
+    this.store.dispatch(new DeletePlayer([]));
+  }
+
   returnHomePage() {
     this.playerService.removePlayer('players');
     this.router.navigate(['/player']);
     this.addRoutetoStore('/player');
+    this.deletePlayerFromStore();
   }
 }
