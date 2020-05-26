@@ -14,7 +14,7 @@
         [class.cell__highlighted]="highlightedCol == j" [class.cell__corner-left-top]="i === 0 && j === 0"
         [class.cell__corner-left-bottom]="i === 5 && j === 0" [class.cell__corner-right-top]="i === 0 && j === 6"
         [class.cell__corner-right-bottom]="i === 5 && j === 6">
-        <div class="cell__hole" [class.is-mobile]="isMobile">
+        <div class="cell__hole" [class.dark-theme]="isDarkTheme | async" [class.is-mobile]="isMobile">
           <div @bounceInTop *ngIf="col.value === 1 || col.value === 2" [attr.data-value]="j" [attr.data-row]="i"
             class="token" [class.is-mobile]="isMobile" [class.token__red]="col.value === 1"
             [class.token__yellow]="col.value === 2"></div>
