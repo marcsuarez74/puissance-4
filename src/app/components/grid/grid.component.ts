@@ -138,7 +138,7 @@ export class GridComponent implements OnInit {
   }
 
   //define the first player who play
-  wichPlayerStart() {
+  wichPlayerStart(): void {
     if (this.winner === null) {
       this.turn = Math.floor(Math.random() * Math.floor(3));
       if (this.turn === 0) {
@@ -205,8 +205,6 @@ export class GridComponent implements OnInit {
           this.turn = 2;
         }
 
-        console.log(this.turn);
-
         this.displayToken(row, column, this.turn);
 
         // increment turn
@@ -219,9 +217,7 @@ export class GridComponent implements OnInit {
   }
 
   // put the token in the cell with the good color
-  displayToken(row: number, column: number, player: number) {
-    console.log(player);
-
+  displayToken(row: number, column: number, player: number): void {
     this.grid[row][column].value = player;
 
     if (this.win(row, column, this.turn)) {
@@ -235,13 +231,15 @@ export class GridComponent implements OnInit {
     this.decrementTokenPlayer(player);
   }
 
+  // display snackbar match null
   isMatchNull() {
     return this.snackBar.open(this.CONSTANTS.GRID.MATCH_NULL, '', {
       duration: 2000,
     });
   }
 
-  defineWinner(turn: number) {
+  // set the winner
+  defineWinner(turn: number): void {
     this.players.forEach((player: IPlayer) => {
       if (player.player === turn) {
         this.winner = player;
@@ -251,6 +249,7 @@ export class GridComponent implements OnInit {
     this.playerService.setPlayers('players', this.players);
   }
 
+  // check victory conditions
   win(row: number, column: number, player: number): boolean {
     // Horizontal victory
     let count = 0;
