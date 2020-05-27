@@ -1,5 +1,5 @@
 @import '../../app/components/grid/grid.component';
 
-@mixin component-themes($theme) {
-    @include grid-theme($theme);
+@mixin grid-themes($theme) {
+  @include grid-theme($theme);
 }

@@ -9,7 +9,7 @@ $warn: mat-palette($mat-red);
 $theme: mat-light-theme($primary, $accent, $warn);
 
 @include angular-material-theme($theme);
-@include component-themes($theme);
+@include grid-themes($theme);
 
 // dark theme
 .dark-theme {
@@ -20,5 +20,5 @@ $theme: mat-light-theme($primary, $accent, $warn);
   $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
   @include angular-material-theme($dark-theme);
-  @include component-themes($dark-theme);
+  @include grid-themes($dark-theme);
 }
