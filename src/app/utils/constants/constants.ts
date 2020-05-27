@@ -24,7 +24,17 @@ const constants = {
   BUTTON: {
     LABELS: {
       PLAY: 'JOUER !',
+      RESTART: 'REJOUER',
     },
+  },
+
+  GRID: {
+    WINNER_LABEL: 'Le vainqueur de la partie est',
+  },
+
+  FIRST_PLAYER: {
+    IT_S: "C'est",
+    WHO_BEGIN: 'qui commence',
   },
 };
 

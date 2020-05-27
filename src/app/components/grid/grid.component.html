@@ -3,7 +3,7 @@
   <p class="count" *ngIf="count != 0">{{ count }}</p>
 
   <h1 class="winner" *ngIf="winner">
-    le vainqueur de la partie est
+    {{CONSTANTS.GRID.WINNER_LABEL}}
     <span class="winner__name" [class.winner__red]="winner.player === 1"
       [class.winner__yellow]="winner.player === 2">{{ winner.name }}</span>
   </h1>
@@ -25,6 +25,6 @@
 
   <button class="btn btn-restart" mat-flat-button *ngIf="winner !== null || moves === 41" (click)="renderGrid()"
     color="primary">
-    Rejouer
+    {{CONSTANTS.BUTTON.LABELS.RESTART}}
   </button>
 </div>

@@ -18,6 +18,7 @@ import {
 } from 'src/app/share/animations/bounce.animation';
 import { PlayerService } from 'src/app/share/service/player.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import constants from 'src/app/utils/constants/constants';
 
 @Component({
   selector: 'grid',
@@ -31,9 +32,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   ],
 })
 export class GridComponent implements OnInit {
+  public CONSTANTS = constants;
+
   private subs: Subscription[] = [];
 
-  counter$: Observable<number>;
+  $counter: Observable<number>;
   public count = 4;
 
   private $mobile: Observable<IMobile>;
@@ -46,7 +49,6 @@ export class GridComponent implements OnInit {
 
   private rows: number = GRID_CONFIG.ROWS;
   private columns: number = GRID_CONFIG.COLUMN;
-  public firstCellAvailble;
 
   public animationActive: boolean = false;
   public animationState: string;
@@ -71,7 +73,7 @@ export class GridComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.counter$ = timer(0, 700).pipe(
+    this.$counter = timer(0, 700).pipe(
       take(this.count),
       map(() => {
         return --this.count;
@@ -97,7 +99,7 @@ export class GridComponent implements OnInit {
 
     this.wichPlayerStart();
 
-    this.counter$.subscribe((count) => {
+    this.$counter.subscribe((count) => {
       if (count === 0) {
         this.renderGrid();
         this.dialog.closeAll();
@@ -115,6 +117,7 @@ export class GridComponent implements OnInit {
   // create initial grid empty
   public renderGrid() {
     this.initPlayerToken();
+    this.wichPlayerStart();
     this.moves = 0;
     this.winner = null;
     for (let i = 0; i < this.rows; i++) {

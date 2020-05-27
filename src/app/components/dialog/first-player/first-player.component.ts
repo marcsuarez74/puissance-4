@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { IPlayer } from 'src/app/share/models/player';
+import constants from 'src/app/utils/constants/constants';
 
 interface IData {
   players: IPlayer[];
@@ -13,6 +14,7 @@ interface IData {
   styleUrls: ['./first-player.component.scss'],
 })
 export class FirstPlayerComponent implements OnInit {
+  public CONSTANTS = constants;
   public player: IPlayer;
 
   constructor(
