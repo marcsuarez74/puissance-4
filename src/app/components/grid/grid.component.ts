@@ -50,9 +50,6 @@ export class GridComponent implements OnInit {
   private rows: number = GRID_CONFIG.ROWS;
   private columns: number = GRID_CONFIG.COLUMN;
 
-  public animationActive: boolean = false;
-  public animationState: string;
-
   public highlightedCol: number;
 
   public turn: number;
@@ -108,16 +105,19 @@ export class GridComponent implements OnInit {
   }
 
   //init the number of token for player
-  initPlayerToken() {
+  initPlayerToken(): void {
     this.players.forEach((player: IPlayer) => {
       player.tokens = 21;
     });
   }
 
   // create initial grid empty
-  public renderGrid() {
+  public renderGrid(): void {
     this.initPlayerToken();
-    this.wichPlayerStart();
+    if (this.winner !== null) {
+      this.wichPlayerStart();
+    }
+
     this.moves = 0;
     this.winner = null;
     for (let i = 0; i < this.rows; i++) {
@@ -128,7 +128,7 @@ export class GridComponent implements OnInit {
   }
 
   // decrement tokens of the player who is playing and uptate the state in the store
-  decrementTokenPlayer(turn: number) {
+  decrementTokenPlayer(turn: number): void {
     this.players.forEach((player: IPlayer) => {
       if (player.player === turn) {
         player.tokens--;
@@ -160,6 +160,10 @@ export class GridComponent implements OnInit {
           break;
         default:
       }
+
+      this.dialog.open(FirstPlayerComponent, {
+        data: { players: this.players, turn: this.turn },
+      });
     }
   }
 
@@ -168,15 +172,12 @@ export class GridComponent implements OnInit {
     this.highlightedCol = column;
   }
 
-  oddOrEven(turn: number) {
+  oddOrEven(turn: number): number {
     return turn & 1 ? 1 : 2;
   }
 
   public play(column: number) {
-    this.animationActive = false;
-
     if (this.winner === null) {
-      this.animationState = 'start';
       // find the first empty cell of the column
 
       let row: number;
@@ -189,9 +190,13 @@ export class GridComponent implements OnInit {
 
       // if no cell is empty the column is full
       if (row === undefined) {
-        return this.snackBar.open('colonne complete', 'Rejouer', {
-          duration: 3000,
-        });
+        return this.snackBar.open(
+          this.CONSTANTS.GRID.FULL_COLUMN,
+          this.CONSTANTS.GRID.PLAY_OTHER_COLUMN,
+          {
+            duration: 3000,
+          }
+        );
       } else {
         // switch the turn
         if (this.oddOrEven(this.turn) === 1) {
@@ -199,6 +204,8 @@ export class GridComponent implements OnInit {
         } else {
           this.turn = 2;
         }
+
+        console.log(this.turn);
 
         this.displayToken(row, column, this.turn);
 
@@ -213,6 +220,8 @@ export class GridComponent implements OnInit {
 
   // put the token in the cell with the good color
   displayToken(row: number, column: number, player: number) {
+    console.log(player);
+
     this.grid[row][column].value = player;
 
     if (this.win(row, column, this.turn)) {
@@ -227,7 +236,7 @@ export class GridComponent implements OnInit {
   }
 
   isMatchNull() {
-    return this.snackBar.open('Match null', '', {
+    return this.snackBar.open(this.CONSTANTS.GRID.MATCH_NULL, '', {
       duration: 2000,
     });
   }
@@ -242,20 +251,24 @@ export class GridComponent implements OnInit {
     this.playerService.setPlayers('players', this.players);
   }
 
-  win(row: number, column: number, player: number) {
-    // Horizontal
+  win(row: number, column: number, player: number): boolean {
+    // Horizontal victory
     let count = 0;
     for (let j = 0; j < this.columns; j++) {
       count = this.grid[row][j].value == player ? count + 1 : 0;
-      if (count >= 4) return true;
+      if (count >= 4) {
+        return true;
+      }
     }
-    // Vertical
+    // Vertical victory
     count = 0;
     for (let i = 0; i < this.rows; i++) {
       count = this.grid[i][column].value == player ? count + 1 : 0;
-      if (count >= 4) return true;
+      if (count >= 4) {
+        return true;
+      }
     }
-    // Diagonal
+    // Diagonal victory
     count = 0;
     let shift = row - column;
     for (
@@ -264,9 +277,11 @@ export class GridComponent implements OnInit {
       i++
     ) {
       count = this.grid[i][i - shift].value == player ? count + 1 : 0;
-      if (count >= 4) return true;
+      if (count >= 4) {
+        return true;
+      }
     }
-    // Anti-diagonal
+    // Anti-diagonal victory
     count = 0;
     shift = row + column;
 
@@ -276,7 +291,9 @@ export class GridComponent implements OnInit {
       i++
     ) {
       count = this.grid[i][shift - i].value == player ? count + 1 : 0;
-      if (count >= 4) return true;
+      if (count >= 4) {
+        return true;
+      }
     }
 
     return false;

@@ -30,6 +30,9 @@ const constants = {
 
   GRID: {
     WINNER_LABEL: 'Le vainqueur de la partie est',
+    FULL_COLUMN: 'Colonne complète',
+    PLAY_OTHER_COLUMN: 'Choisir une autre colonne',
+    MATCH_NULL: 'Match null',
   },
 
   FIRST_PLAYER: {
